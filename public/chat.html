@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>		
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>	
+		<script type="text/javascript" src="/scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="/scripts/chat.js"></script>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/chat.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	</head>
+
+	<body>
+		<div class="login-box" id="login">
+			<div class="login-box-content">
+			    <form class="form-inline">
+  		            <input type="text" class="input-small" placeholder="Your name" id="name">
+			        <input type="button" name="join" id="join" value="Join" class="btn btn-primary">
+			        <div><span id="error"></span></div>
+			    </form>
+			</div>    
+		</div>
+		<div class="row message-box">
+		  <div class="col-md-2">
+		      <ul id="people" class="user-list"></ul>
+		  </div>
+		  <div class="col-md-10">
+		      <ul id="msgs" class="message-list"></ul>
+		  </div>
+		</div>
+		<div class="row">
+		    <div class="col-md-offset-2 col-md-10 type-box" id="chat">
+		        <form id="2" class="form-inline message-form">
+		            <input type="text" class="input" placeholder="Your message" id="msg">
+		            <input type="button" name="send" id="send" value="Send" class="btn btn-success">
+		        </form>
+		    </div>
+		  </div>
+		</div>		
+	</body>
+</html>
