@@ -44,11 +44,12 @@ server.on('connection', function(client){
 						console.log('Saving user failed');
 						next(err);
 					}else{
-						console.log('Connection Success!');
+						console.log('Connection Success!');						
+						client.emit('existing-users', users);							
 						users[client.id] = user;				
 						client.emit('update', 'connected');
-						server.sockets.emit('update', user + ' has joined');
-						server.sockets.emit('update-users', users);
+						server.sockets.emit('update-users', user);						
+						console.log(users);
 						client.emit('connectionSuccess', user);
 					}					
 				});				
@@ -65,9 +66,14 @@ server.on('connection', function(client){
 		server.sockets.emit('chat', users[client.id], msg);		
 	});
 
-	client.on('disconnect', function(){
-		server.sockets.emit('update', users[client.id] + ' has left');
-		delete users[client.id];		
+	client.on('disconnect', function(){		
+		server.sockets.emit('disconnection-update', users[client.id]);
+		User.find({username:users[client.id].username})
+		.remove()
+		.exec();
+		delete users[client.id];
+		server.sockets.emit('updated-list', users);
+
 	});
 
 });
